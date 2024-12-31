@@ -7,20 +7,18 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-<div class="max-h-full flex">
-    <div  >
+<div class="max-h-full flex border border-red-600">
+    <div> 
         <x-aside/>
     </div>
-    <div class="flex-grow max-h-full">
-        <div >
-        <x-datos/>
+    <div class="flex-grow">
+        <div>
+            <x-navbar/>
         </div>
-        <div class="h-full border border-blue-600">
-        <x-herramientas/>
+        <div>
+            <x-herramientas/>
         </div>
     </div>
-    
-    
 </div>
 </body>
 </html>
