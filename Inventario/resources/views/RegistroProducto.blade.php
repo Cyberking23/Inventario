@@ -45,7 +45,7 @@
         <!-- Contenido principal -->
         <main class="flex-1 p-8">
             <div class="mb-8">
-                <h1 class="text-2xl font-semibold">Productos Registrados</h1>
+                <h1 class="text-2xl font-semibold">Registro de Productos</h1>
                 
                 <!-- Tabs -->
                 <div class="flex border-b border-gray-200 mt-4">
@@ -57,10 +57,43 @@
 
             <!-- Formulario de Registro de Productos -->
 
-            <div class="border border-red-700">
+            <h1 class="font-bold text-2xl text-center">Registrar Producto</h1>
 
-            </div>
-           
+            <form action="">
+                <div class="flex justify-center ">
+                    <div class="flex mt-11  w-[80%] ">
+                        <div class=" w-[50%] rounded-md mr-5">
+                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="name" placeholder="Nombre de Producto">
+                        </div>
+                        <div class=" w-[50%] ">
+                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="description" placeholder="Descripcion">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center ">
+                    <div class="flex mt-11  w-[80%] ">
+                        <div class=" w-[50%] rounded-md mr-5">
+                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="quantity" placeholder="Cantidad">
+                        </div>
+                        <div class=" w-[50%] ">
+                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="category"  placeholder="Categoria">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="flex mt-11  w-[80%] justify-center ">
+                        <div class=" w-[50%] rounded-md mr-5">
+                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="location"  placeholder="Ubicacion de Producto">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="text-center bg-red-500 text-white mt-5 p-5 rounded-md cursor-pointer hover:bg-red-800">Registrar</button>
+                </div>     
+            </form>      
         </main>
     </div>
 </body>

@@ -20,7 +20,7 @@ class ToolController extends Controller
         // Valida los datos recibidos en la solicitud
         $request->validate([
             'name' => 'required|string|max:255', // 'name' es obligatorio, debe ser una cadena y no exceder los 255 caracteres
-            'description' => 'nullable|string', // 'description' es opcional, puede ser una cadena de texto
+            'description' => 'nulla-ble|string', // 'description' es opcional, puede ser una cadena de texto
             'quantity' => 'required|integer', // 'quantity' es obligatorio y debe ser un número entero
             'category' => 'required|string|max:255', // 'category' es obligatorio, debe ser una cadena y no exceder los 255 caracteres
             'location' => 'nullable|string|max:255', // 'location' es opcional, puede ser una cadena de texto de máximo 255 caracteres

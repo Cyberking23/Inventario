@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ToolController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('tools',ToolController::class);
+Route::apiResource('users',UserController::class);
