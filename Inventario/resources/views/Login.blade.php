@@ -16,7 +16,7 @@
                         <img src="{{ asset('images/logo.jpg') }}" class="w-10" alt="">
                     </div>
                     <div class="flex items-center">
-                        <h1 class="font-bold">Nombre de la App</h1>
+                        <h1 class="font-bold">Managment Center</h1>
                     </div>
                 </div>
                 <h1 class="font-bold text-3xl mt-1 text-center mt-5">Welcome Back</h1>
@@ -48,7 +48,7 @@
             </div>
                 <hr class="m-5">
                 <div class="text-center mb-10">
-                    <h1>Dont have account <span class="text-red-500">Sign Up</span></h1>   
+                   <a href="/registro"><h1>Dont have account <span class="text-red-500">Register</span></h1></a>  
                 </div>
             </div>
             <div >

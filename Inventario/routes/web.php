@@ -20,3 +20,11 @@ Route::get('/home', function(){
 Route::get('/', function(){
     return view("Login");
 });
+
+Route::get('/registro', function(){
+    return view("Registro");
+});
+
+Route::get('/productos', function(){
+    return view("RegistroProducto");
+});
