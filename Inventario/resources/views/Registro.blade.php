@@ -20,39 +20,38 @@
                 </div>
                 <h1 class="font-bold text-3xl mt-1 text-center mt-5">Welcome Back</h1>
 
-                <div class="pl-5 pt-5">
-                    <div>
-                        <h1 class="font-bold">Nombre Completo</h1>
-                    </div>
-                    <div class="ml-2">
-                        <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" type="text" name="name" placeholder="Nombre">
-                    </div>
-                </div>
-
-                <!-- Formulario con CSRF -->
-                <form action="{{ route('user') }}" method="POST">
-                    @csrf  <!-- CSRF Token -->
-                    <div class="pl-5 pt-3">
+                <form action="{{ url('api/users') }}" method="POST">
+                    <div class="pl-5 pt-5">
                         <div>
-                            <h1 class="font-bold">Email Address</h1>
+                            <h1 class="font-bold">Nombre Completo</h1>
                         </div>
                         <div class="ml-2">
-                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="email" type="email" placeholder="Email">
+                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" type="text" name="name" placeholder="Nombre">
                         </div>
                     </div>
-                    <div class="pl-5 mt-5">
-                        <div>
-                            <h1 class="font-bold">Password</h1>
+                    <!-- Formulario con CSRF -->
+                        @csrf  <!-- CSRF Token -->
+                        <div class="pl-5 pt-3">
+                            <div>
+                                <h1 class="font-bold">Email Address</h1>
+                            </div>
+                            <div class="ml-2">
+                                <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="email" type="email" placeholder="Email">
+                            </div>
                         </div>
-                        <div class="ml-2">
-                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password" type="password" placeholder="Password">
+                        <div class="pl-5 mt-5">
+                            <div>
+                                <h1 class="font-bold">Password</h1>
+                            </div>
+                            <div class="ml-2">
+                                <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password" type="password" placeholder="Password">
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex justify-center mt-5">
-                        <button type="submit" class="bg-blue-700 h-14 w-[75%]">
-                            <h1 class="text-white">Registro</h1>
-                        </button>
-                    </div>
+                        <div class="flex justify-center mt-5">
+                            <button type="submit" class="bg-blue-700 h-14 w-[75%]">
+                                <h1 class="text-white">Registro</h1>
+                            </button>
+                        </div>
                 </form>
 
                 <hr class="m-5">

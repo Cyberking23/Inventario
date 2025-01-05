@@ -26,16 +26,12 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|string|min:8',
         ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-
+    
+         $user = User::create($request->all());
+    
         return response()->json($user, 201); // 201 indica que se creó un recurso
     }
 }
