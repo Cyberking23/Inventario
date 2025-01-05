@@ -23,12 +23,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
     
-        // Crear usuario con contraseña hasheada
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+         $user = User::create($request->all());
     
         return response()->json($user, 201); // 201 indica que se creó un recurso
     }

@@ -29,4 +29,3 @@ Route::get('/registro', function(){
 Route::get('/productos', function(){
     return view("RegistroProducto");
 });
-
