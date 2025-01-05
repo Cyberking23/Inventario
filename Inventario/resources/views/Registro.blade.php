@@ -31,7 +31,7 @@
                 </div>
                 
 
-                <form action="" method="POST">
+                
                     @csrf
                         <div class="pl-5 pt-3">
                             <div>
@@ -54,7 +54,6 @@
                                 <h1 class="text-white">Log In</h1>
                             </button>
                     </div>
-                </form>
 
                 <hr class="m-5">
                 <div class="text-center mb-10">

@@ -59,7 +59,6 @@
 
             <h1 class="font-bold text-2xl text-center">Registrar Producto</h1>
 
-            <form action="">
                 <div class="flex justify-center ">
                     <div class="flex mt-11  w-[80%] ">
                         <div class=" w-[50%] rounded-md mr-5">
@@ -93,7 +92,6 @@
                 <div class="flex justify-center">
                     <button type="submit" class="text-center bg-red-500 text-white mt-5 p-5 rounded-md cursor-pointer hover:bg-red-800">Registrar</button>
                 </div>     
-            </form>      
         </main>
     </div>
 </body>
