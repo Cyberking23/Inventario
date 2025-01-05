@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     @vite('resources/css/app.css')
-
 </head>
 <body>
     <div class=" h-screen bg-blue-500 flex items-center justify-center">
@@ -26,46 +25,45 @@
                         <h1 class="font-bold">Nombre Completo</h1>
                     </div>
                     <div class="ml-2">
-                        <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" type="text" name="name" type="text" placeholder="Nombre">
+                        <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" type="text" name="name" placeholder="Nombre">
                     </div>
                 </div>
-                
 
-                <form action="users.store" method="post">
-    <div class="pl-5 pt-3">
-        <div>
-            <h1 class="font-bold">Email Address</h1>
-        </div>
-        <div class="ml-2">
-            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="email" type="email" placeholder="Email">
-        </div>
-    </div>
-    <div class="pl-5 mt-5">
-        <div>
-            <h1 class="font-bold">Password</h1>
-        </div>
-        <div class="ml-2">
-            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password" type="password" placeholder="Password">
-        </div>
-    </div>
-    <div class="flex justify-center mt-5">
-        <button type="submit" class="bg-blue-700 h-14 w-[75%]">
-            <h1 class="text-white">Registro</h1>
-        </button>
-    </div>
-</form>
-
+                <!-- Formulario con CSRF -->
+                <form action="{{ route('user') }}" method="POST">
+                    @csrf  <!-- CSRF Token -->
+                    <div class="pl-5 pt-3">
+                        <div>
+                            <h1 class="font-bold">Email Address</h1>
+                        </div>
+                        <div class="ml-2">
+                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="email" type="email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="pl-5 mt-5">
+                        <div>
+                            <h1 class="font-bold">Password</h1>
+                        </div>
+                        <div class="ml-2">
+                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password" type="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-5">
+                        <button type="submit" class="bg-blue-700 h-14 w-[75%]">
+                            <h1 class="text-white">Registro</h1>
+                        </button>
+                    </div>
+                </form>
 
                 <hr class="m-5">
                 <div class="text-center mb-10">
-                 <a href="/"><h1>Do you already have an account <span class="text-red-500">Log In</span></h1></a>   
+                    <a href="/"><h1>Do you already have an account <span class="text-red-500">Log In</span></h1></a>   
                 </div>
             </div>
-            <div >
+            <div>
                 <img src="{{ asset('images/Trabajo.jpg') }}" class="h-full w-[600px] rounded-r-lg" alt="">
             </div>
         </div>
     </div>
-
 </body>
 </html>

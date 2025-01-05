@@ -31,6 +31,7 @@ Route::get('/productos', function(){
 });
 
 
-Route::post('users', [UserController::class, 'store'])->name('users.store');
+Route::post('/api/users', [UserController::class, 'store'])->name('user');
+
 
 
