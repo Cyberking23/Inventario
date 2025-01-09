@@ -59,39 +59,43 @@
 
             <h1 class="font-bold text-2xl text-center">Registrar Producto</h1>
 
-                <div class="flex justify-center ">
-                    <div class="flex mt-11  w-[80%] ">
-                        <div class=" w-[50%] rounded-md mr-5">
+            <form action="{{ route('tools.store') }}" method="POST">
+                @csrf <!-- Esto es necesario para prevenir ataques CSRF -->
+
+                <div class="flex justify-center">
+                    <div class="flex mt-11 w-[80%]">
+                        <div class="w-[50%] rounded-md mr-5">
                             <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="name" placeholder="Nombre de Producto">
                         </div>
-                        <div class=" w-[50%] ">
-                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="description" placeholder="Descripcion">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-center ">
-                    <div class="flex mt-11  w-[80%] ">
-                        <div class=" w-[50%] rounded-md mr-5">
-                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="quantity" placeholder="Cantidad">
-                        </div>
-                        <div class=" w-[50%] ">
-                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="category"  placeholder="Categoria">
+                        <div class="w-[50%]">
+                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="description" placeholder="Descripción">
                         </div>
                     </div>
                 </div>
 
                 <div class="flex justify-center">
-                    <div class="flex mt-11  w-[80%] justify-center ">
-                        <div class=" w-[50%] rounded-md mr-5">
-                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="location"  placeholder="Ubicacion de Producto">
+                    <div class="flex mt-11 w-[80%]">
+                        <div class="w-[50%] rounded-md mr-5">
+                            <input type="number" class="p-5 w-[100%] border border-black rounded-xl" name="quantity" placeholder="Cantidad">
+                        </div>
+                        <div class="w-[50%]">
+                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="category" placeholder="Categoría">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="flex mt-11 w-[80%] justify-center">
+                        <div class="w-[50%] rounded-md mr-5">
+                            <input type="text" class="p-5 w-[100%] border border-black rounded-xl" name="location" placeholder="Ubicación de Producto">
                         </div>
                     </div>
                 </div>
 
                 <div class="flex justify-center">
                     <button type="submit" class="text-center bg-red-500 text-white mt-5 p-5 rounded-md cursor-pointer hover:bg-red-800">Registrar</button>
-                </div>     
+                </div>
+            </form>
         </main>
     </div>
 </body>

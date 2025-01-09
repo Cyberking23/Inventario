@@ -82,46 +82,46 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <!-- Fila de ejemplo -->
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm text-gray-900">#3733</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">
-                                            John Doe
-                                        </div>
+                        @foreach ($tools as $tool)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-sm text-gray-900">{{ $loop->iteration }}</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">
+                                        {{ $tool->name }}
                                     </div>
-                                </div>
-                            </td>
-                           
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm text-gray-900">30 U</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Completed
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <h1 class="text-sm text-gray-900">Almacen 3B</h1>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                <div>
-                                    <button class="bg-red-600 rounded-xl text-white p-2">
-                                        Eliminar
-                                    </button>
-                                    <button class="bg-blue-600 rounded-xl text-white p-2">
-                                        Editar
-                                    </button>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <!-- Puedes repetir esta fila para más órdenes -->
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-sm text-gray-900">{{ $tool->quantity }}</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                        {{ $tool->status === 'Available' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                                        {{ $tool->status }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <h1 class="text-sm text-gray-900">{{ $tool->location }}</h1>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <div>
+                                    <form action="{{ route('tools.destroy', $tool->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-600 rounded-xl text-white p-2">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                        <button class="bg-blue-600 rounded-xl text-white p-2">
+                                            Editar
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
+
                 </table>
             </div>
         </main>

@@ -9,9 +9,10 @@ class ToolController extends Controller
 {
     // Obtener todos los tools
     public function index()
-    {
-        // Obtiene todas las herramientas de la base de datos y las devuelve en formato JSON con un código de estado 200 (éxito)
-        return response()->json(Tool::all(), 200);
+     {
+            // Obtiene todas las herramientas de la base de datos
+        $tools = Tool::all();
+        return view('Home', compact('tools'));
     }
 
     // Crear un nuevo tool
@@ -20,17 +21,23 @@ class ToolController extends Controller
         // Valida los datos recibidos en la solicitud
         $request->validate([
             'name' => 'required|string|max:255', // 'name' es obligatorio, debe ser una cadena y no exceder los 255 caracteres
-            'description' => 'nulla-ble|string', // 'description' es opcional, puede ser una cadena de texto
+            'description' => 'nullable|string', // 'description' es opcional, puede ser una cadena de texto
             'quantity' => 'required|integer', // 'quantity' es obligatorio y debe ser un número entero
             'category' => 'required|string|max:255', // 'category' es obligatorio, debe ser una cadena y no exceder los 255 caracteres
             'location' => 'nullable|string|max:255', // 'location' es opcional, puede ser una cadena de texto de máximo 255 caracteres
         ]);
 
         // Crea una nueva herramienta utilizando los datos validados de la solicitud
-        $tool = Tool::create($request->all());
+        $tool = Tool::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'quantity' => $request->quantity,
+            'category' => $request->category,
+            'location' => $request->location,
+        ]);
 
-        // Devuelve la herramienta recién creada en formato JSON con un código de estado 201 (creado exitosamente)
-        return response()->json($tool, 201);
+        // Redirige al usuario a la página de productos con un mensaje de éxito
+        return redirect()->route('home')->with('message', 'Producto registrado exitosamente');
     }
 
     // Obtener un tool por ID
@@ -107,16 +114,18 @@ class ToolController extends Controller
     {
         // Busca la herramienta en la base de datos usando el ID proporcionado
         $tool = Tool::find($id);
-
+    
         // Si la herramienta no se encuentra, devuelve un mensaje de error con un código de estado 404 (no encontrado)
         if (!$tool) {
-            return response()->json(['message' => 'Herramienta no encontrada'], 404);
+            // Redirige al índice de herramientas con un mensaje de error
+            return redirect()->route('home')->with('error', 'Herramienta no encontrada');
         }
-
+    
         // Si la herramienta se encuentra, la elimina de la base de datos
         $tool->delete();
-
-        // Devuelve un mensaje de éxito con un código de estado 200 (éxito) indicando que la herramienta fue eliminada
-        return response()->json(['message' => 'Herramienta eliminada'], 200);
+    
+        // Redirige al índice de herramientas con un mensaje de éxito
+        return redirect()->route('home')->with('message', 'Herramienta eliminada');
     }
+    
 }

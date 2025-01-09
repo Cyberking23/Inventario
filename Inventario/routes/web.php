@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ToolController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -14,9 +15,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/home', function(){
-    return view("Home");
-});
+
+Route::get('/home', [ToolController::class, 'index'])->name('home');
+
+Route::delete('/tools/{id}', [ToolController::class, 'destroy'])->name('tools.destroy');
 
 Route::get('/', function(){
     return view("Login");
@@ -29,7 +31,6 @@ Route::get('/registro', function(){
 Route::get('/productos', function(){
     return view("RegistroProducto");
 });
-
 
 
 

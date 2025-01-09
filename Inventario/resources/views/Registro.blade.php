@@ -30,7 +30,6 @@
                         </div>
                     </div>
                     <!-- Formulario con CSRF -->
-                        @csrf  <!-- CSRF Token -->
                         <div class="pl-5 pt-3">
                             <div>
                                 <h1 class="font-bold">Email Address</h1>
