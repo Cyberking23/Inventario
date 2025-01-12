@@ -19,13 +19,13 @@ Route::get('/registro', function () {
     return view('Registro');
 });
 
-Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
+Route::post('/registrar',[UserController::class, 'store'])->middleware('check.email.exists')->name('user.store');
 
 // Rutas relacionadas con la vista principal/login
 Route::get('/', function () {
     return view('Login');
-});
+})->name('login');
 
 // Rutas relacionadas con el dashboard
 Route::get('/dashboard', function () {
