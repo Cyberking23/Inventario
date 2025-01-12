@@ -5,57 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     @vite('resources/css/app.css')
-
 </head>
 <body>
-    <div class=" h-screen bg-blue-500 flex items-center justify-center">
-        <div class="flex">
-            <div class=" bg-white w-[500px] p-10 rounded-s-xl ">
-                <div class="flex items-center justify-center   ">
-                    <div>
-                        <img src="{{ asset('images/logo.jpg') }}" class="w-10" alt="">
-                    </div>
-                    <div class="flex items-center">
-                        <h1 class="font-bold">Managment Center</h1>
-                    </div>
+    <div class="h-screen bg-blue-500 flex items-center justify-center">
+        <div class="bg-white w-[450px] p-8 rounded-lg shadow-lg">
+            <!-- Logo y Título -->
+            <div class="flex items-center justify-center mb-6">
+                <img src="{{ asset('images/logo.jpg') }}" class="w-12 h-12" alt="Logo">
+                <h1 class="text-xl font-bold ml-2">Management Center</h1>
+            </div>
+
+            <!-- Bienvenida -->
+            <h1 class="text-2xl font-bold text-center text-gray-800 mb-4">Welcome Back</h1>
+            <p class="text-center text-gray-600 mb-6">Please login to your account</p>
+
+            <!-- Línea divisora -->
+            <div class="flex items-center mb-6">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="px-4 text-sm text-gray-500">Or login with</span>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>
+
+            <!-- Formulario -->
+            <form action="{{ route('login.validate') }}" method="POST" class="space-y-4">
+                @csrf
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input id="email" name="email" type="email" required placeholder="Enter your email" 
+                        class="border border-gray-300 rounded-md w-full p-2 mt-1 focus:ring-blue-500 focus:border-blue-500">
                 </div>
-                <h1 class="font-bold text-3xl mt-1 text-center mt-5">Welcome Back</h1>
-                <div class="flex items-center mt-5">
-                    <div class="flex-grow border-t border-gray-400"></div>
-                    <h1 class="px-4 text-gray-600">Or login with</h1>
-                    <div class="flex-grow border-t border-gray-400"></div>
+                <!-- Contraseña -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input id="password" name="password" type="password" required placeholder="Enter your password"
+                        class="border border-gray-300 rounded-md w-full p-2 mt-1 focus:ring-blue-500 focus:border-blue-500">
                 </div>
-                <div class="pl-5">
-                    <div>
-                        <h1 class="font-bold">Email Address</h1>
-                    </div>
-                    <div class="ml-2">
-                        <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" type="email" placeholder="Email">
-                    </div>
-                </div>
-                <div class="pl-5 mt-5">
-                    <div>
-                        <h1 class="font-bold">Password </h1>
-                    </div>
-                    <div class="ml-2">
-                        <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" type="password" placeholder="Password">
-                    </div>
-                </div>
-            <div class="flex justify-center mt-5">
-                    <button class="bg-blue-700 h-14 w-[75%] ">
-                        <h1 class="text-white">Log In</h1>
+
+                <!-- Botón -->
+                <div class="text-center">
+                    <button type="submit" 
+                        class="bg-blue-600 text-white rounded-md w-full py-2 font-semibold hover:bg-blue-700 transition">
+                        Log In
                     </button>
-            </div>
-                <hr class="m-5">
-                <div class="text-center mb-10">
-                   <a href="/registro"><h1>Dont have account <span class="text-red-500">Register</span></h1></a>  
                 </div>
-            </div>
-            <div >
-                <img src="{{ asset('images/Trabajo.jpg') }}" class="h-full w-[600px] rounded-r-lg" alt="">
+            </form>
+
+            <!-- Registro -->
+            <div class="text-center mt-6">
+                <p class="text-sm text-gray-600">
+                    Don’t have an account? 
+                    <a href="/registro" class="text-blue-500 font-medium hover:underline">Register</a>
+                </p>
             </div>
         </div>
     </div>
-
 </body>
 </html>

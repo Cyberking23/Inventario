@@ -16,16 +16,19 @@ class CheckEmailExists
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Verifica si ya existe un usuario con el correo proporcionado
-        $emailExists = Users::where('email', $request->email)->exists();
+         // Verifica si ya existe un usuario con el correo proporcionado
+    $emailExists = Users::where('email', $request->email)->exists();
 
-        if ($emailExists) {
-            // Si el correo ya existe, devuelve una respuesta de error
-            return response()->json(['error' => 'El correo electrónico ya está registrado.'], 400);
-        }
+    if ($emailExists) {
+        // Si el correo ya existe, redirige con un mensaje de error
+        return redirect()
+            ->back()
+            ->withErrors(['email' => 'El correo electrónico ya está registrado.'])
+            ->withInput();
+    }
 
-        // Si no existe, continúa con la solicitud
-        return $next($request);
+    // Si no existe, continúa con la solicitud
+    return $next($request);
     }
     
 }

@@ -14,7 +14,7 @@
                 <svg class="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2Z"/>
                 </svg>
-                <span class="ml-2 text-xl font-semibold">Dashboard</span>
+                <span class="ml-2 text-xl font-semibold">Bienvenido {{ $user->name }}!</span>
             </div>
             
             <nav class="space-y-2">
@@ -36,6 +36,12 @@
                     </svg>
                     Registrar Productos
                 </a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="flex items-center px-4 py-2 text-gray-600 hover:bg-red-100 rounded-lg">
+                        Salir
+                    </button>
+                </form>
                 
                
             </nav>

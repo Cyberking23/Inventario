@@ -36,7 +36,16 @@
                             <h1 class="font-bold">Email Address</h1>
                         </div>
                         <div class="ml-2">
-                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="email" type="email" placeholder="Email" required>
+                            <input 
+                                class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2 @error('email') border-red-500 @enderror" 
+                                name="email" 
+                                type="email" 
+                                placeholder="Email" 
+                                value="{{ old('email') }}" 
+                                required>
+                            @error('email')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 

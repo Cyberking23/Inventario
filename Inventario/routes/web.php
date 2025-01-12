@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +28,13 @@ Route::get('/', function () {
     return view('Login');
 })->name('login');
 
+Route::post('/login', [AuthController::class, 'login'])->name('login.validate');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 // Rutas relacionadas con el dashboard
 Route::get('/dashboard', function () {
     return view('Dashboard');
-});
+})->name('dashboard');
 
 // Rutas relacionadas con productos
 Route::get('/productos', function () {
@@ -42,7 +46,7 @@ Route::get('/editarproducto', function () {
 });
 
 // Rutas relacionadas con herramientas
-Route::get('/home', [ToolController::class, 'index'])->name('home');
+Route::get('/home', [ToolController::class, 'index'])->name('home')->middleware('auth');
 
 Route::delete('/tools/{id}', [ToolController::class, 'destroy'])->name('tools.destroy');
 

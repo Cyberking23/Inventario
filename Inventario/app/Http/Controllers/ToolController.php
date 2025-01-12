@@ -9,10 +9,15 @@ class ToolController extends Controller
 {
     // Obtener todos los tools
     public function index()
-     {
-            // Obtiene todas las herramientas de la base de datos
+    {
+        // Obtiene todas las herramientas de la base de datos
         $tools = Tool::all();
-        return view('Home', compact('tools'));
+
+        // Obtén el usuario autenticado
+        $user = auth()->user();
+
+        // Pasa las herramientas y el usuario a la vista
+        return view('Home', compact('tools', 'user'));
     }
 
     // Crear un nuevo tool
