@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Órdenes</title>
+    <title>Dashboard</title>
     @vite('resources/css/app.css')
 
 </head>
@@ -18,13 +18,13 @@
             </div>
             
             <nav class="space-y-2">
-                <a href="/dashboard" class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                <a href="/dashboard" class="flex items-center px-4 py-2 text-gray-600 text-red-600 bg-red-50 hover:bg-gray-100 rounded-lg">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                     </svg>
                     Dashboard
                 </a>
-                <a href="#" class="flex items-center px-4 py-2 text-red-600 bg-red-50 rounded-lg">
+                <a href="/home" class="flex items-center px-4 py-2  rounded-lg">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                     </svg>
@@ -67,13 +67,10 @@
                             </th>
                     
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Descripcion
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Cantidad
                             </th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Categoria
+                                Estado
                             </th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Ubicacion
@@ -84,50 +81,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($tools as $tool)
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="text-sm text-gray-900">{{ $loop->iteration }}</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-medium text-gray-900">
-                                        {{ $tool->name }}
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-medium text-gray-900">
-                                        {{ $tool->description }}
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="text-sm text-gray-900">{{ $tool->quantity }}</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <h1 class="text-sm text-gray-900">{{ $tool->category }}</h1>
-                                </td>
-                               
-                                <td class="px-6 py-4">
-                                    <h1 class="text-sm text-gray-900">{{ $tool->location }}</h1>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                    <div>
-                                    <form action="{{ route('tools.destroy', $tool->id) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="bg-red-600 rounded-xl text-white p-2">
-                                            Eliminar
-                                        </button>
-                                    </form>
-                                        <button class="bg-blue-600 rounded-xl text-white p-2">
-                                        <a href="{{ route('tools.edit', $tool->id) }}" class="bg-blue-600 rounded-xl text-white p-2">
-                                            Editar
-                                        </a>
-
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+                      
                     </tbody>
 
                 </table>

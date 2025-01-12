@@ -7,10 +7,10 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-    <div class=" h-screen bg-blue-500 flex items-center justify-center">
+    <div class="h-screen bg-blue-500 flex items-center justify-center">
         <div class="flex">
-            <div class=" bg-white w-[500px] p-10 rounded-s-xl ">
-                <div class="flex items-center justify-center   ">
+            <div class="bg-white w-[500px] p-10 rounded-s-xl">
+                <div class="flex items-center justify-center">
                     <div>
                         <img src="{{ asset('images/logo.jpg') }}" class="w-10" alt="">
                     </div>
@@ -20,42 +20,48 @@
                 </div>
                 <h1 class="font-bold text-3xl mt-1 text-center mt-5">Welcome Back</h1>
 
-                <form action="{{ url('api/users') }}" method="POST">
+                <!-- Formulario de registro -->
+                <form action="{{ route('register.store') }}" method="POST">
+                    @csrf
                     <div class="pl-5 pt-5">
-                        <div>
-                            <h1 class="font-bold">Nombre Completo</h1>
-                        </div>
+                        <h1 class="font-bold">Nombre Completo</h1>
                         <div class="ml-2">
                             <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" type="text" name="name" placeholder="Nombre">
                         </div>
                     </div>
-                    <!-- Formulario con CSRF -->
-                        <div class="pl-5 pt-3">
-                            <div>
-                                <h1 class="font-bold">Email Address</h1>
-                            </div>
-                            <div class="ml-2">
-                                <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="email" type="email" placeholder="Email">
-                            </div>
+
+                    <div class="pl-5 pt-3">
+                        <h1 class="font-bold">Email Address</h1>
+                        <div class="ml-2">
+                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="email" type="email" placeholder="Email">
                         </div>
-                        <div class="pl-5 mt-5">
-                            <div>
-                                <h1 class="font-bold">Password</h1>
-                            </div>
-                            <div class="ml-2">
-                                <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password" type="password" placeholder="Password">
-                            </div>
+                    </div>
+
+                    <div class="pl-5 mt-5">
+                        <h1 class="font-bold">Password</h1>
+                        <div class="ml-2">
+                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password" type="password" placeholder="Password">
                         </div>
-                        <div class="flex justify-center mt-5">
-                            <button type="submit" class="bg-blue-700 h-14 w-[75%]">
-                                <h1 class="text-white">Registro</h1>
-                            </button>
+                    </div>
+
+                    <!-- Campo para confirmar la contraseña -->
+                    <div class="pl-5 mt-5">
+                        <h1 class="font-bold">Confirmar Password</h1>
+                        <div class="ml-2">
+                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password_confirmation" type="password" placeholder="Confirm Password">
                         </div>
+                    </div>
+
+                    <div class="flex justify-center mt-5">
+                        <button type="submit" class="bg-blue-700 h-14 w-[75%]">
+                            <h1 class="text-white">Registro</h1>
+                        </button>
+                    </div>
                 </form>
 
                 <hr class="m-5">
                 <div class="text-center mb-10">
-                    <a href="/"><h1>Do you already have an account <span class="text-red-500">Log In</span></h1></a>   
+                    <a href="/"><h1>Do you already have an account <span class="text-red-500">Log In</span></h1></a>
                 </div>
             </div>
             <div>

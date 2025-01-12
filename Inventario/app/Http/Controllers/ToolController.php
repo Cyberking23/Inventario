@@ -54,6 +54,19 @@ class ToolController extends Controller
         // Si la herramienta se encuentra, devuelve los datos de la herramienta en formato JSON con un código de estado 200 (éxito)
         return response()->json($tool, 200);
     }
+    public function edit($id)
+    {
+        // Busca la herramienta en la base de datos usando el ID proporcionado
+        $tool = Tool::find($id);
+
+        // Si la herramienta no se encuentra, devuelve un mensaje de error con un código de estado 404 (no encontrado)
+        if (!$tool) {
+            return redirect('/home')->with('error', 'Herramienta no encontrada');
+        }
+
+        // Pasa la herramienta a la vista de edición
+        return view('EditProducto', compact('tool'));
+    }
 
     // Actualizar un tool por ID
     public function update(Request $request, $id)
@@ -106,7 +119,7 @@ class ToolController extends Controller
         $tool->save();
 
         // Devuelve la herramienta actualizada en formato JSON con un código de estado 200 (éxito)
-        return response()->json($tool, 200);
+        return redirect('/home')->with('success', 'Producto actualizado exitosamente.');
     }
 
     // Eliminar un tool por ID
