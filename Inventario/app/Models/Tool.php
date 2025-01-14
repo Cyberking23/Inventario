@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tool extends Model
 {
-    protected $fillable = ['name',"description","quantity","category","location"];
+    protected $fillable = ['name',"description","quantity","category","location",'user_id'];
 }

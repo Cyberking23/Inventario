@@ -26,14 +26,22 @@ class UserController extends Controller
         ]);
 
         // Redirigir o retornar una respuesta
-        return redirect()->route('login');
+        return redirect()->route('login.start');
     }
+    public function ShowRegister(Request $request){
+        // Obtén el usuario autenticado
+        $user = auth()->user();
+
+        // Pasa el usuario a la vista
+        return view('registroproducto', compact('user'));
+   }
+
 
     public function showDashboard(Request $request){
          // Obtén el usuario autenticado
          $user = auth()->user();
 
          // Pasa el usuario a la vista
-         return view('dashboard', compact('user'));
+         return view('home', compact('user'));
     }
 }

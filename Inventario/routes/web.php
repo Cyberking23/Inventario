@@ -6,13 +6,12 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
-|---------------------------------------------------------------------------
+|--------------------------------------------------------------------------- 
 | Web Routes
-|---------------------------------------------------------------------------
-| Aquí es donde puedes registrar las rutas web para tu aplicación. Estas
-| rutas se cargan a través de RouteServiceProvider y todas se asignan al
-| grupo de middleware "web". ¡Haz algo genial!
-|
+|--------------------------------------------------------------------------- 
+| Aquí es donde puedes registrar las rutas web para tu aplicación. Estas 
+| rutas se cargan a través de RouteServiceProvider y todas se asignan al 
+| grupo de middleware "web". ¡Haz algo genial! 
 */
 
 // Rutas relacionadas con el usuario
@@ -20,13 +19,12 @@ Route::get('/registro', function () {
     return view('Registro');
 });
 
-
-Route::post('/registrar',[UserController::class, 'store'])->middleware('check.email.exists')->name('user.store');
+Route::post('/registrar', [UserController::class, 'store'])->middleware('check.email.exists')->name('user.store');
 
 // Rutas relacionadas con la vista principal/login
 Route::get('/', function () {
     return view('Login');
-})->name('login');
+})->name('login.start');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.validate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -46,9 +44,13 @@ Route::get('/editarproducto', function () {
 });
 
 // Rutas relacionadas con herramientas
-Route::get('/home', [ToolController::class, 'index'])->name('home')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [ToolController::class, 'index'])->name('home');
+    Route::get('/tools/{id}/edit', [ToolController::class, 'edit'])->name('tools.edit');
+    Route::put('/tools/{id}', [ToolController::class, 'update'])->name('tools.update');
+    Route::delete('/tools/{id}', [ToolController::class, 'destroy'])->name('tools.destroy');
+    Route::post('/tools', [ToolController::class, 'store'])->name('tools.store');
+});
 
-Route::delete('/tools/{id}', [ToolController::class, 'destroy'])->name('tools.destroy');
-
-Route::get('/tools/{id}/edit', [ToolController::class, 'edit'])->name('tools.edit');
-Route::put('/tools/{id}', [ToolController::class, 'update'])->name('tools.update');
+// Ruta para mostrar el registro de herramientas desde el controlador de usuarios
+Route::get('/productos', [UserController::class, 'ShowRegister'])->name('ShowRegister');

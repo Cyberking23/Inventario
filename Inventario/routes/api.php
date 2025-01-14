@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('tools',ToolController::class);
+// Route::apiResource('tools',ToolController::class);
