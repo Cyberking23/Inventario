@@ -20,10 +20,9 @@ Route::get('/registro', function () {
     return view('Registro');
 });
 
-Auth::routes(['verify' => true]);
-
 Route::post('/registrar', [UserController::class, 'store'])->middleware('check.email.exists')->name('user.store');
 
+// Rutas de verificación de correo electrónico
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware(['auth', 'signed'])->name('verification.notice');
@@ -42,10 +41,10 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 // Rutas relacionadas con productos
+Route::get('/productos', [UserController::class, 'ShowRegister'])->name('ShowRegister');
 Route::get('/productos', function () {
     return view('RegistroProducto');
 });
-
 Route::get('/editarproducto', function () {
     return view('EditProducto');
 });
@@ -58,6 +57,3 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tools/{id}', [ToolController::class, 'destroy'])->name('tools.destroy');
     Route::post('/tools', [ToolController::class, 'store'])->name('tools.store');
 });
-
-// Ruta para mostrar el registro de herramientas desde el controlador de usuarios
-Route::get('/productos', [UserController::class, 'ShowRegister'])->name('ShowRegister');
