@@ -39,6 +39,7 @@ class ToolController extends Controller
             'quantity' => $request->quantity,
             'category' => $request->category,
             'location' => $request->location,
+            'user_id' => auth()->user()->id,
         ]);
 
         // Redirige al usuario a la página de productos con un mensaje de éxito
