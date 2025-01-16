@@ -4,6 +4,7 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------- 
@@ -19,7 +20,13 @@ Route::get('/registro', function () {
     return view('Registro');
 });
 
+Auth::routes(['verify' => true]);
+
 Route::post('/registrar', [UserController::class, 'store'])->middleware('check.email.exists')->name('user.store');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware(['auth', 'signed'])->name('verification.notice');
 
 // Rutas relacionadas con la vista principal/login
 Route::get('/', function () {
