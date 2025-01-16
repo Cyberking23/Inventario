@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Mail\Events\MessageSent;
+use Illuminate\Support\Facades\Log;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(MessageSent::class, function ($event) {
+            Log::info('Correo enviado:', ['to' => $event->message->getTo()]);
+        });
     }
 }

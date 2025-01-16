@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;  // Extiende de Authenticatable
-use Illuminate\Notifications\Notifiable;  // Añadir Notifiable para la notificación
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Users extends Authenticatable implements MustVerifyEmail 
+class Users extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;  // Añadir Notifiable al modelo
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     protected $hidden = [
@@ -22,5 +23,11 @@ class Users extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
-    // Otros métodos o personalizaciones del modelo
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+        public function sendEmailVerificationNotification()
+    {
+        $this->notify(new \App\Notifications\CustomVerifyEmail);
+    }
 }

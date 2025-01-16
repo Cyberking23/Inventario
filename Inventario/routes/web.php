@@ -3,6 +3,7 @@
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,10 +16,21 @@ use Illuminate\Support\Facades\Auth;
 | grupo de middleware "web". ¡Haz algo genial! 
 */
 
+Auth::routes(['verify' => true]); 
+
 // Rutas relacionadas con el usuario
 Route::get('/registro', function () {
     return view('Registro');
 });
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/mensaje',function(){
+    return view('Mensaje') ;
+})->name('mensaje.confirmation');
 
 Route::post('/registrar', [UserController::class, 'store'])->middleware('check.email.exists')->name('user.store');
 
@@ -36,9 +48,9 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.validate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Rutas relacionadas con el dashboard
-Route::get('/dashboard', function () {
-    return view('Dashboard');
-})->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('Dashboard');
+// })->name('dashboard');
 
 // Rutas relacionadas con productos
 Route::get('/productos', [UserController::class, 'ShowRegister'])->name('ShowRegister');
@@ -50,7 +62,7 @@ Route::get('/editarproducto', function () {
 });
 
 // Rutas relacionadas con herramientas
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/home', [ToolController::class, 'index'])->name('home');
     Route::get('/tools/{id}/edit', [ToolController::class, 'edit'])->name('tools.edit');
     Route::put('/tools/{id}', [ToolController::class, 'update'])->name('tools.update');

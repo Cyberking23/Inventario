@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -29,7 +29,7 @@ class UserController extends Controller
         $user->sendEmailVerificationNotification();
     
         // Redirigir o retornar una respuesta
-        return redirect()->route('login.start')->with('status', 'We have sent you an email verification link!');
+        return redirect()->route('mensaje.confirmation')->with('status', 'We have sent you an email verification link!');
     }
     
     public function ShowRegister(Request $request){

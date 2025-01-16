@@ -27,7 +27,7 @@
                             <h1 class="font-bold">Nombre Completo</h1>
                         </div>
                         <div class="ml-2">
-                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" type="text" name="name" placeholder="Nombre" required>
+                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" autocomplete="name"  type="text" name="name" placeholder="Nombre" required>
                         </div>
                     </div>
 
@@ -42,6 +42,7 @@
                                 type="email" 
                                 placeholder="Email" 
                                 value="{{ old('email') }}" 
+                                autocomplete="email" 
                                 required>
                             @error('email')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -54,7 +55,7 @@
                             <h1 class="font-bold">Password</h1>
                         </div>
                         <div class="ml-2">
-                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password" type="password" placeholder="Password" required>
+                            <input class="border border-gray-300 rounded-sm mt-2 w-[75%] p-2" name="password" autocomplete="password" type="password" placeholder="Password" required>
                         </div>
                     </div>
 
