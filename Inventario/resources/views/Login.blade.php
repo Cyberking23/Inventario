@@ -41,6 +41,12 @@
                     <input id="password" name="password" type="password" required placeholder="Enter your password"
                         class="border border-gray-300 rounded-md w-full p-2 mt-1 focus:ring-blue-500 focus:border-blue-500">
                 </div>
+                
+                <div class="mt-5 flex">
+                    <a href="{{ route('password.request') }}" class="text-blue-400 hover:text-blue-600">
+                        Forgot Password?
+                    </a>
+                </div>
 
                 <!-- Botón -->
                 <div class="text-center">

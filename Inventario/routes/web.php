@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware(['auth', 'signed'])->name('verification.notice');
 
+Route::get('/password', function () {
+    return view('Password');
+});
+
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
     return redirect('/home');
@@ -48,6 +53,23 @@ Route::post('/registrar', [UserController::class, 'store'])->middleware('check.e
 Route::get('/mensaje', function () {
     return view('Mensaje');
 })->name('mensaje.confirmation');
+
+// Rutas de recuperación de contraseña
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])
+    ->middleware('guest')
+    ->name('password.request');
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])
+    ->middleware('guest')
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])
+    ->middleware('guest')
+    ->name('password.reset');
+
+Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])
+    ->middleware('guest')
+    ->name('password.update');
 
 // Rutas de inicio y dashboard
 Route::get('/', function () {
@@ -74,4 +96,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/tools/{id}', [ToolController::class, 'destroy'])->name('tools.destroy');
     Route::post('/tools', [ToolController::class, 'store'])->name('tools.store');
 });
-
